@@ -11,5 +11,5 @@ module.exports = (app, upload) => {
 
     router.delete("/:id", verifyToken, image.delete);
 
-    app.use("/api/images", router);
+    app.use("/images", router);
 };

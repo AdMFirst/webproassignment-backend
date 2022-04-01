@@ -19,5 +19,5 @@ module.exports = app => {
 
   router.delete("/", verifyToken, post.deleteAll);
 
-  app.use("/api/posts", router);
+  app.use("/posts", router);
 };
