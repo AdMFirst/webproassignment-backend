@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const whitelist = ['https://eurocarpathian.com', 'http://locslhost:3000']
 const corsOptions = {
-    origin: 'https://eurocarpathian.com',
+    origin: 'https://www.eurocarpathian.com',
     optionsSuccessStatus: 200
 }
 
