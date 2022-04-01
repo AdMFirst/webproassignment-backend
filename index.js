@@ -2,21 +2,22 @@ require('dotenv').config()
 
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
-const cors = require("cors");
+const multer = require("multer");
 
 const app = express();
 
-/*var corsOptions = {
-  origin: "http://localhost:3000"
-};
 
-app.use(cors(corsOptions));*/
 
 // parse requests of content-type - application/json
 app.use(express.json({ extended: false }));  /* bodyParser.json() is deprecated */
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 const db = require("./app/models");
 db.mongoose
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/post.routes")(app);
+require("./app/routes/image.routes")(app, upload);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
