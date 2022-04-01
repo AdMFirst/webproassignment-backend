@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
     res.json({message: "Welcome to eurocarpathian API."});
 });
 
-require("./app/routes/auth.routes")(app);
+require("./app/routes/auth.routes")(app, cors, corsOptions);
 require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
 
