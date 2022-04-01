@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express = require("express");
-// const bodyParser = require("body-parser"); /* deprecated */
 const multer = require("multer");
 
 const app = express();
@@ -13,8 +12,6 @@ app.use(express.json({ extended: false }));  /* bodyParser.json() is deprecated 
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
-
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 var storage = multer.memoryStorage()
 var upload = multer({ storage: storage })
@@ -35,7 +32,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to eurocarpathian API." });
 });
 
 require("./app/routes/auth.routes")(app);
