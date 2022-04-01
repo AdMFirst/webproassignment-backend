@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended: true}));   /* bodyParser.urlencoded() is d
 
 app.use(cors(corsOptions));
 
+
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 
@@ -51,6 +52,8 @@ app.get("/", (req, res) => {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
+
+app.options('*', cors())
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
