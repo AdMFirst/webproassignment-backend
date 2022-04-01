@@ -16,7 +16,7 @@ app.use(cors(corsOptions));*/
 app.use(express.json({ extended: false }));  /* bodyParser.json() is deprecated */
 
 // parse requests of content-type - application/x-www-form-urlencoded
-// app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
+app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
 const db = require("./app/models");
 db.mongoose
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./app/routes/turorial.routes")(app);
+require("./app/routes/post.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
