@@ -1,5 +1,5 @@
 module.exports = mongoose => {
-    var schema = mongoose.Schema(
+    const schema = mongoose.Schema(
         {
             name: String,
             desc: String,
@@ -11,6 +11,5 @@ module.exports = mongoose => {
         }
     );
 
-    const Image = mongoose.model("image", schema);
-    return Image;
+    return mongoose.model("image", schema);
 };

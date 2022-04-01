@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
+require("./app/routes/auth.routes")(app);
 require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
 

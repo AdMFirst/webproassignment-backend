@@ -30,7 +30,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Posts from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving posts."
       });
     });
 };
@@ -112,7 +112,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Tutorials from the database.
+// Delete all Posts from the database.
 exports.deleteAll = (req, res) => {
   Post.deleteMany({})
     .then(data => {
@@ -123,12 +123,12 @@ exports.deleteAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all tutorials."
+          err.message || "Some error occurred while removing all posts."
       });
     });
 };
 
-// Find all published Tutorials
+// Find all published Posts
 exports.findAllPublished = (req, res) => {
   Post.find({ published: true })
     .then(data => {
@@ -137,7 +137,7 @@ exports.findAllPublished = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving posts."
       });
     });
 };

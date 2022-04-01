@@ -1,9 +1,7 @@
 const db = require("../models");
 const Image = db.images;
-const fs = require("fs");
 
 exports.upload = (req, res) => {
-    console.log(req.file)
     const finalImage = {
         name: req.file.name,
         desc: 'String',
@@ -13,15 +11,12 @@ exports.upload = (req, res) => {
         }
     };
 
-
     Image.create(finalImage, function (err, result) {
         if (err) {
             console.log(err);
         } else {
-            console.log(result.img.Buffer);
-            console.log("Saved To database");
-            res.contentType(finalImage.img.contentType);
-            res.send(finalImage.img.data);
+            res.status(200);
+            res.send({ file: req.file });
         }
     })
 };
@@ -42,5 +37,27 @@ exports.findOne = (req, res) => {
             res
                 .status(500)
                 .send({message: "Error retrieving Post with id=" + id});
+        });
+};
+
+exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    Image.findByIdAndRemove(id, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot delete Image with id=${id}. Maybe Image was not found!`
+                });
+            } else {
+                res.send({
+                    message: "Image was deleted successfully!"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete Image with id=" + id
+            });
         });
 };

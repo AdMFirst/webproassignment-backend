@@ -1,28 +1,23 @@
+const verifyToken = require('../middlewares/authJWT');
+
 module.exports = app => {
-  const posts = require("../controllers/post.controller.js");
+  const post = require("../controllers/post.controller.js");
 
-  var router = require("express").Router();
+  const router = require("express").Router();
 
-  // Create a new Tutorial
-  router.post("/", posts.create);
+  router.post("/", verifyToken, post.create);
 
-  // Retrieve all Tutorials
-  router.get("/", posts.findAll);
+  router.get("/", verifyToken, post.findAll);
 
-  // Retrieve all published Tutorials
-  router.get("/published", posts.findAllPublished);
+  router.get("/published", post.findAllPublished);
 
-  // Retrieve a single Tutorial with id
-  router.get("/:id", posts.findOne);
+  router.get("/:id", verifyToken, post.findOne);
 
-  // Update a Tutorial with id
-  router.put("/:id", posts.update);
+  router.put("/:id", verifyToken, post.update);
 
-  // Delete a Tutorial with id
-  router.delete("/:id", posts.delete);
+  router.delete("/:id", verifyToken, post.delete);
 
-  // Create a new Tutorial
-  router.delete("/", posts.deleteAll);
+  router.delete("/", verifyToken, post.deleteAll);
 
   app.use("/api/posts", router);
 };

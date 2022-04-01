@@ -1,9 +1,10 @@
 module.exports = mongoose => {
-  var schema = mongoose.Schema(
+  const schema = mongoose.Schema(
     {
       title: String,
       description: String,
-      published: Boolean
+      published: Boolean,
+      imageId: String
     }
   );
 
@@ -13,6 +14,5 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Post = mongoose.model("post", schema);
-  return Post;
+  return mongoose.model("post", schema);
 };
