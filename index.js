@@ -6,17 +6,17 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
+/*var corsOptions = {
   origin: "http://localhost:3000"
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 
 // parse requests of content-type - application/json
-app.use(express.json());  /* bodyParser.json() is deprecated */
+app.use(express.json({ extended: false }));  /* bodyParser.json() is deprecated */
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
+// app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
 const db = require("./app/models");
 db.mongoose
