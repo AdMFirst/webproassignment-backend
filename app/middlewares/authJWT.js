@@ -25,7 +25,8 @@ const verifyToken = (req, res, next) => {
         req.user = undefined;
         res.status(401)
             .send({
-                message: 'JWT token not found'
+                message: 'JWT token not found',
+                headers: req.headers
             });
     }
 };
