@@ -4,11 +4,7 @@ const bcrypt = require("bcrypt");
 const User = db.users;
 
 exports.login = (req, res) => {
-    return res.status(404)
-        .send({
-            message: "User Not found."
-        });
-    /*try {
+    try {
         User.findOne({
             email: req.body.email
         })
@@ -64,7 +60,7 @@ exports.login = (req, res) => {
             .send({
                 e
             });
-    }*/
+    }
 };
 
 exports.register = (req, res) => {
