@@ -48,7 +48,7 @@ require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
 
 // app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 
 
