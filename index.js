@@ -6,7 +6,13 @@ const cors = require('cors')
 
 const whitelist = ['https://eurocarpathian.com', 'http://locslhost:3000']
 const corsOptions = {
-    origin: '*',
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
     optionsSuccessStatus: 200
 }
 
@@ -19,13 +25,13 @@ app.use(express.json({extended: false}));  /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));   /* bodyParser.urlencoded() is deprecated */
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Access-Control-Request-Headers,Access-Control-Request-Method,Authorization,authorization,Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", '*');
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.header("Access-Control-Allow-Headers", 'Access-Control-Request-Headers,Access-Control-Request-Method,Authorization,authorization,Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//     next();
+// });
 
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
