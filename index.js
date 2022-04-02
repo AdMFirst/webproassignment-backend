@@ -47,9 +47,7 @@ require("./app/routes/auth.routes")(app, cors, corsOptions);
 require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-
+app.use(cors());
 
 
 // set port, listen for requests
