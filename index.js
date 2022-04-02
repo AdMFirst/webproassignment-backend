@@ -4,7 +4,7 @@ const express = require("express");
 const multer = require("multer");
 const cors = require('cors')
 
-const whitelist = ['https://eurocarpathian.com', 'http://locslhost:3000']
+const whitelist = ['https://www.eurocarpathian.com', 'http://locslhost:3000']
 const corsOptions = {
     origin: function (origin, callback) {
         console.log(origin)
