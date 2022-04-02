@@ -1,7 +1,7 @@
 module.exports = (app, cors, corsOptions) => {
     const auth = require("../controllers/auth.controller.js");
 
-    let router = require("../utils/router").Router();
+    let router = require("../utils/router");
 
     router.post("/register", auth.register);
 
