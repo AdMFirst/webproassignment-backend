@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const whitelist = ['https://eurocarpathian.com', 'http://locslhost:3000']
 const corsOptions = {
-    origin: 'https://www.eurocarpathian.com',
+    origin: 'www.eurocarpathian.com',
     optionsSuccessStatus: 200
 }
 
@@ -54,8 +54,8 @@ app.get("/", (req, res) => {
 // app.post("/auth/login", auth.login);
 
 require("./app/routes/auth.routes")(app, cors, corsOptions);
-require("./app/routes/post.routes")(app);
-require("./app/routes/image.routes")(app, upload);
+require("./app/routes/post.routes")(app, cors, corsOptions);
+require("./app/routes/image.routes")(app, upload, cors, corsOptions);
 
 app.use( cors());
 
