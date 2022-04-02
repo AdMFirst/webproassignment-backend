@@ -49,15 +49,15 @@ app.get("/", (req, res) => {
     res.json({message: "Welcome to eurocarpathian API."});
 });
 
-const auth = require("./app/controllers/auth.controller");
+// const auth = require("./app/controllers/auth.controller");
 
-app.post("/auth/login", auth.login);
+// app.post("/auth/login", auth.login);
 
-// require("./app/routes/auth.routes")(app, cors, corsOptions);
+require("./app/routes/auth.routes")(app, cors, corsOptions);
 require("./app/routes/post.routes")(app);
 require("./app/routes/image.routes")(app, upload);
 
-app.use(cors());
+app.use('*', cors());
 
 
 // set port, listen for requests
