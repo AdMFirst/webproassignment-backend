@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
 
 const auth = require("./app/controllers/auth.controller");
 
-app.post("/login", auth.login);
+app.post("/auth/login", auth.login);
 
 // require("./app/routes/auth.routes")(app, cors, corsOptions);
 require("./app/routes/post.routes")(app);
