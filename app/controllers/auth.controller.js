@@ -10,11 +10,10 @@ exports.login = (req, res) => {
     })
         .exec((err, user) => {
             if (err) {
-                res.status(500)
+                return res.status(500)
                     .send({
                         message: err
                     });
-                return;
             }
             if (!user) {
                 return res.status(404)
@@ -44,7 +43,7 @@ exports.login = (req, res) => {
             });
 
             //responding to client request with user profile success message and  access token .
-            res.status(200)
+            return res.status(200)
                 .send({
                     user: {
                         id: user._id,
@@ -67,13 +66,12 @@ exports.register = (req, res) => {
 
     user.save((err, user) => {
         if (err) {
-            res.status(500)
+            return res.status(500)
                 .send({
                     message: err
                 });
-            return;
         } else {
-            res.status(200)
+            return res.status(200)
                 .send({
                     message: "User Registered successfully"
                 })
