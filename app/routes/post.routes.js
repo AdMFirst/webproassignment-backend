@@ -4,7 +4,7 @@ module.exports = (app, cors, corsOptions) => {
   const post = require("../controllers/post.controller.js");
 
   const router = require("express").Router();
-  router.all('*', cors());
+  router.all('*', cors(corsOptions));
 
   router.post("/", verifyToken, post.create);
 
