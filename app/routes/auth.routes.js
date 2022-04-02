@@ -1,8 +1,7 @@
 module.exports = (app, cors, corsOptions) => {
     const auth = require("../controllers/auth.controller.js");
 
-    let router = require("express").Router();
-    router.all('*', cors());
+    let router = require("../utils/router").Router();
 
     router.post("/register", auth.register);
 
