@@ -1,9 +1,10 @@
 const verifyToken = require('../middlewares/authJWT');
 
-module.exports = (app, upload) => {
+module.exports = (app, upload, cors, corsOptions) => {
     const image = require("../controllers/image.controller.js");
 
     let router = require("express").Router();
+    router.all('*', cors(corsOptions));
 
     router.post("/upload", upload.single("image"), verifyToken, image.upload);
 
