@@ -4,7 +4,6 @@ const Image = db.images;
 exports.upload = (req, res) => {
     const finalImage = {
         name: req.file.name,
-        desc: 'String',
         img: {
             contentType: req.file.mimetype,
             data: req.file.buffer,
@@ -21,13 +20,26 @@ exports.upload = (req, res) => {
     })
 };
 
+exports.findAll = (req, res) => {
+    Image.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving images."
+            });
+        });
+};
+
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
     Image.findById(id)
         .then(data => {
             if (!data)
-                res.status(404).send({message: "Not found Post with id " + id});
+                res.status(404).send({message: "Not found Image with id " + id});
             else {
                 res.contentType(data.img.contentType);
                 res.send(data.img.data);

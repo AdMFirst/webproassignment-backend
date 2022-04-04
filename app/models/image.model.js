@@ -2,7 +2,6 @@ module.exports = mongoose => {
     const schema = mongoose.Schema(
         {
             name: String,
-            desc: String,
             img:
                 {
                     data: Buffer,

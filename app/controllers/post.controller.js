@@ -13,7 +13,9 @@ exports.create = (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    published: req.body.published || false,
+    imageId: req.body.imageId,
+    userId: req.user.id
   });
 
   // Save Post in the database
@@ -37,7 +39,7 @@ exports.findAll = (req, res) => {
 
   Post.find(condition)
     .then(data => {
-      res.send({data, user: req.user});
+      res.send(data);
     })
     .catch(err => {
       res.status(500).send({

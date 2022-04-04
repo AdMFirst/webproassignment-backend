@@ -5,11 +5,11 @@ module.exports = mongoose => {
         {
             fullName: {
                 type: String,
-                required: [true, "fullname not provided "],
+                required: [true, "Full Name not provide"],
             },
             email: {
                 type: String,
-                unique: [true, "email already exists in database!"],
+                unique: [true, "Email already exists in database!"],
                 lowercase: true,
                 trim: true,
                 required: [true, "email not provided"],
