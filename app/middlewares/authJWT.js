@@ -16,6 +16,7 @@ const verifyToken = (req, res, next) => {
                                 message: err
                             });
                     } else {
+                        user.password = undefined
                         req.user = user;
                         next();
                     }
