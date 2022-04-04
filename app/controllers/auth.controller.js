@@ -2,6 +2,7 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = db.users;
+const { ROLE_USER } = require("../config/app.config");
 
 exports.login = (req, res) => {
     try {
@@ -67,13 +68,13 @@ exports.register = (req, res) => {
     const user = new User({
         fullName: req.body.fullName,
         email: req.body.email,
-        role: req.body.role,
+        role: ROLE_USER,
         password: bcrypt.hashSync(req.body.password, 8)
     });
 
     user.save((err, user) => {
         if (err) {
-            return res.status(500)
+            return res.status(400)
                 .send({
                     message: err
                 });

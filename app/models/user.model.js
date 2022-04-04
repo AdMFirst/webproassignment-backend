@@ -1,4 +1,6 @@
 module.exports = mongoose => {
+    const { ROLE_ADMIN, ROLE_USER } = require("../config/app.config");
+
     const schema = mongoose.Schema(
         {
             fullName: {
@@ -21,7 +23,7 @@ module.exports = mongoose => {
             },
             role: {
                 type: String,
-                enum: ["normal", "admin"],
+                enum: [ROLE_ADMIN, ROLE_USER],
                 required: [true, "Please specify user role"]
             },
             password: {
