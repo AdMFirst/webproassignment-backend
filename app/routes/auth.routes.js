@@ -9,9 +9,9 @@ module.exports = (app, cors, corsOptions) => {
 
     router.post("/register", verifyToken, isAdmin, auth.register);
 
-    router.post("/me", verifyToken, auth.getUser);
-
     router.post("/login", auth.login);
+
+    router.get("/me", verifyToken, auth.getUser);
 
     app.use("/auth", router);
 };
