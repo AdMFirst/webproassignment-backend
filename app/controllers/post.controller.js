@@ -37,7 +37,7 @@ exports.findAll = (req, res) => {
 
   Post.find(condition)
     .then(data => {
-      res.send(data);
+      res.send({data, user: req.user});
     })
     .catch(err => {
       res.status(500).send({
