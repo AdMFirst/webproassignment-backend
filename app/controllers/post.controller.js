@@ -13,6 +13,8 @@ exports.create = (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
+    titleEN: req.body.titleEN,
+    descriptionEN: req.body.descriptionEN,
     published: req.body.published || false,
     imageId: req.body.imageId,
     userId: req.user.id
