@@ -4,6 +4,7 @@ const Image = db.images;
 exports.upload = (req, res) => {
     const finalImage = {
         name: req.file.name,
+        size: req.file.size,
         img: {
             contentType: req.file.mimetype,
             data: req.file.buffer,

@@ -9,6 +9,14 @@ module.exports = mongoose => {
                 type: String,
                 required: [true, "Description not provided"],
             },
+            titleEN: {
+                type: String,
+                required: [true, "Title EN not provided"],
+            },
+            descriptionEN: {
+                type: String,
+                required: [true, "Description EN not provided"],
+            },
             published: Boolean,
             imageId: {
                 type: String,

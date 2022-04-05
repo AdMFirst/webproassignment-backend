@@ -6,7 +6,8 @@ module.exports = mongoose => {
                 {
                     data: Buffer,
                     contentType: String
-                }
+                },
+            size: Number
         }
     );
 
