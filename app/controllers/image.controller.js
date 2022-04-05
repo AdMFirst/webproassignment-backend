@@ -17,7 +17,7 @@ exports.upload = (req, res) => {
             res.send({ err });
         } else {
             res.status(200);
-            res.send({ file: req.file });
+            res.send(result);
         }
     })
 };
