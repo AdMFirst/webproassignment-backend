@@ -16,6 +16,7 @@ exports.upload = (req, res) => {
             res.status(500);
             res.send({ err });
         } else {
+            result.img = undefined
             res.status(200);
             res.send(result);
         }
