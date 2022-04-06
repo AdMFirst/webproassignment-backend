@@ -174,7 +174,7 @@ exports.translate = async (req, res) => {
 
     languageTranslator.translate(translateParams)
         .then(data => {
-          res.status(200).send(data.result.translations[0]);
+          res.status(200).send(data.result.translations);
         })
         .catch(err => {
           console.log('error:', err);
