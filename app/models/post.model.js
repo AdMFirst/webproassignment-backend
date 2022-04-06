@@ -22,6 +22,9 @@ module.exports = mongoose => {
                 type: String,
                 required: [true, "ImageId not provided"],
             },
+            videoId: {
+                type: String,
+            },
             userId: {
                 type: String,
                 required: [true, "UserId not provided"],
