@@ -17,6 +17,7 @@ exports.create = (req, res) => {
     titleEN: req.body.titleEN,
     descriptionEN: req.body.descriptionEN,
     published: req.body.published || false,
+    created: req.body.created,
     imageId: req.body.imageId,
     videoId: req.body.videoId,
     userId: req.user.id
