@@ -18,6 +18,7 @@ exports.create = (req, res) => {
     descriptionEN: req.body.descriptionEN,
     published: req.body.published || false,
     imageId: req.body.imageId,
+    videoId: req.body.videoId,
     userId: req.user.id
   });
 
