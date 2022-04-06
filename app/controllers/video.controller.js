@@ -51,7 +51,7 @@ exports.findOne = (req, res) => {
         .catch(err => {
             res
                 .status(500)
-                .send({message: "Error retrieving Video with id=" + id});
+                .send({err, message: "Error retrieving Video with id=" + id});
         });
 };
 
