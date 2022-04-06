@@ -7,7 +7,6 @@ module.exports = mongoose => {
             },
             description: {
                 type: String,
-                required: [true, "Description not provided"],
             },
             titleEN: {
                 type: String,
