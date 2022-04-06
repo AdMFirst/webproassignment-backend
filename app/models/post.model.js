@@ -15,7 +15,6 @@ module.exports = mongoose => {
             },
             descriptionEN: {
                 type: String,
-                required: [true, "Description EN not provided"],
             },
             published: Boolean,
             imageId: {
