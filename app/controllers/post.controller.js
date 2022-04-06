@@ -149,20 +149,39 @@ exports.findAllPublished = (req, res) => {
 
 // Find all published Posts
 exports.translate = async (req, res) => {
-  const url = 'https://api.au-syd.language-translator.watson.cloud.ibm.com/instances/71e81a45-6baa-4c4c-9c9c-13e5a0742795//v3/translate?version=2018-05-01'
-  try {
-    const data = await axios.create().post(url,
-        {"text": ["Hello, world.", "How are you?"], "model_id": "en-es"},
-        {
-          headers: {
-            Authorization: 'Basic 0SpIxstehd1XC9YZnQKuIrfr_In9ujZgD4_mrbpILjim'
-          }
-        }
-    )
+  if (!req.body.text) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
 
-    res.status(200).send({
-      data
+  try {
+    const LanguageTranslatorV3 = require('ibm-watson/language-translator/v3');
+    const { IamAuthenticator } = require('ibm-watson/auth');
+
+    const languageTranslator = new LanguageTranslatorV3({
+      version: process.env.TRANSLATOR_VERSION,
+      authenticator: new IamAuthenticator({
+        apikey: process.env.TRANSLATOR_API_KEY,
+      }),
+      serviceUrl: process.env.TRANSLATOR_URL,
+      disableSslVerification: true,
     });
+
+    const translateParams = {
+      modelId: 'uk-en',
+      text: req.body.text,
+    };
+
+    languageTranslator.translate(translateParams)
+        .then(data => {
+          res.status(200).send(data.result.translations[0]);
+        })
+        .catch(err => {
+          console.log('error:', err);
+          res.status(500).send({
+            message: err
+          });
+        });
   } catch (e) {
     res.status(500).send({
       message: e

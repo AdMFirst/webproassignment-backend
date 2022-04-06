@@ -8,7 +8,7 @@ module.exports = (app, cors, corsOptions) => {
 
   router.post("/", verifyToken, post.create);
 
-  router.get("/translate", post.translate);
+  router.post("/translate", verifyToken, post.translate);
 
   router.get("/", verifyToken, post.findAll);
 
