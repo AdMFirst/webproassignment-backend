@@ -44,14 +44,14 @@ exports.findOne = (req, res) => {
             if (!data)
                 res.status(404).send({message: "Not found Video with id " + id});
             else {
-                res.contentType(data.img.contentType);
-                res.send(data.img.data);
+                res.contentType(data.video.contentType);
+                res.send(data.video.data);
             }
         })
         .catch(err => {
             res
                 .status(500)
-                .send({err, message: "Error retrieving Video with id=" + id});
+                .send({ message: "Error retrieving Video with id=" + id});
         });
 };
 
