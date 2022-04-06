@@ -136,7 +136,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Posts
 exports.findAllPublished = (req, res) => {
-  Post.find({ published: true })
+  Post.find({ published: true }).sort({created: -1})
     .then(data => {
       res.send(data);
     })
