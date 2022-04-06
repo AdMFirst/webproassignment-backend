@@ -1,5 +1,6 @@
 const db = require("../models");
 const Post = db.posts;
+const axios = require('axios')
 
 // Create and Save a new Post
 exports.create = (req, res) => {
@@ -144,4 +145,27 @@ exports.findAllPublished = (req, res) => {
           err.message || "Some error occurred while retrieving posts."
       });
     });
+};
+
+// Find all published Posts
+exports.translate = async (req, res) => {
+  const url = 'https://api.au-syd.language-translator.watson.cloud.ibm.com/instances/71e81a45-6baa-4c4c-9c9c-13e5a0742795//v3/translate?version=2018-05-01'
+  try {
+    const data = await axios.create().post(url,
+        {"text": ["Hello, world.", "How are you?"], "model_id": "en-es"},
+        {
+          headers: {
+            Authorization: 'Basic 0SpIxstehd1XC9YZnQKuIrfr_In9ujZgD4_mrbpILjim'
+          }
+        }
+    )
+
+    res.status(200).send({
+      data
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: e
+    });
+  }
 };
