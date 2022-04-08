@@ -11,5 +11,6 @@ db.posts = require("./post.model.js")(mongoose);
 db.images = require("./image.model.js")(mongoose);
 db.users = require("./user.model.js")(mongoose);
 db.videos = require("./video.model.js")(mongoose);
+db.members = require("./member.model.js")(mongoose);
 
 module.exports = db;

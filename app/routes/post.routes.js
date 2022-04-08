@@ -8,8 +8,6 @@ module.exports = (app, cors, corsOptions) => {
 
   router.post("/", verifyToken, post.create);
 
-  router.post("/translate", verifyToken, post.translate);
-
   router.get("/", verifyToken, post.findAll);
 
   router.get("/published", post.findAllPublished);

@@ -53,8 +53,10 @@ require("./app/routes/auth.routes")(app, cors, corsOptions);
 require("./app/routes/post.routes")(app, cors, corsOptions);
 require("./app/routes/image.routes")(app, upload, cors, corsOptions);
 require("./app/routes/video.routes")(app, upload, cors, corsOptions);
+require("./app/routes/member.routes")(app, cors, corsOptions);
+require("./app/routes/translate.routes")(app, cors, corsOptions);
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
