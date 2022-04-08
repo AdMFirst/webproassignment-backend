@@ -14,9 +14,11 @@ exports.create = (req, res) => {
         fullName: req.body.fullName,
         position: req.body.position,
         description: req.body.description,
-        fullNameEN: req.body.fullNameEN,
-        positionEN: req.body.positionEN,
-        descriptionEN: req.body.descriptionEN,
+        en: {
+            fullName: req.body.en.fullName,
+            position: req.body.en.position,
+            description: req.body.en.description,
+        },
         published: req.body.published || false,
         imageId: req.body.imageId,
     });

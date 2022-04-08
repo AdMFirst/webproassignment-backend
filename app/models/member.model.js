@@ -11,17 +11,21 @@ module.exports = mongoose => {
             },
             description: {
                 type: String,
+                required: [true, "Description not provided"],
             },
-            fullNameEN: {
-                type: String,
-                required: [true, "Full Name EN not provided"],
-            },
-            positionEN: {
-                type: String,
-                required: [true, "Position EN not provided"],
-            },
-            descriptionEN: {
-                type: String,
+            en: {
+                fullName: {
+                    type: String,
+                    required: [true, "Full Name EN not provided"],
+                },
+                position: {
+                    type: String,
+                    required: [true, "Position EN not provided"],
+                },
+                description: {
+                    type: String,
+                    required: [true, "Description EN not provided"],
+                },
             },
             published: Boolean,
             imageId: {
