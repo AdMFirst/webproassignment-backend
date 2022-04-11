@@ -24,7 +24,7 @@ exports.upload = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Image.find({}, {name:1, _id:1, img: 0, size: 1})
+    Image.find({}, {name:1, _id:1, size: 1})
         .then(data => {
             res.send(data);
         })
