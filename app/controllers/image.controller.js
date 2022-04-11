@@ -26,15 +26,10 @@ exports.upload = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Image.find({})
+    Image.find({}).select("-img")
         .then(data => {
 
-            res.send(data.map(i => {
-                return {
-                    ...i,
-                    img: null
-                }
-            }));
+            res.send(data);
         })
         .catch(err => {
             res.status(500).send({
