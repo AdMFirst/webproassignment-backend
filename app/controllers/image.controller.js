@@ -39,23 +39,6 @@ exports.findAll = (req, res) => {
         });
 };
 
-exports.removeAll = (req, res) => {
-    Image.find({}).select("-img")
-        .then(data => {
-            data.forEach((item) => {
-                if (!item.postId) {
-                    Image.findByIdAndRemove(item.id, {useFindAndModify: false})
-                }
-            })
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving images."
-            });
-        });
-};
-
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
