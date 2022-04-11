@@ -88,8 +88,14 @@ exports.update = (req, res) => {
           message: `Cannot update Post with id=${id}. Maybe Post was not found!`
         });
       } else {
-        Image.findByIdAndUpdate(req.body.imageId, { postId: id }, { useFindAndModify: false })
-        res.send({message: "Post was updated successfully."});
+        Image.findByIdAndUpdate(req.body.imageId, { postId: id }, { useFindAndModify: false }).then(data => {
+          res.send({message: "Post was updated successfully.", data});
+        }).catch(err => {
+          res.status(500).send({
+            message: "Error updating Post with id=" + id
+          });
+        });
+
       }
     })
     .catch(err => {
