@@ -1,5 +1,6 @@
 const db = require("../models");
 const Post = db.posts;
+const Video = db.videos;
 
 // Create and Save a new Post
 exports.create = (req, res) => {
@@ -82,6 +83,7 @@ exports.update = (req, res) => {
 
   Post.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
+      Video.findByIdAndUpdate(req.body.videoId, { postId: id }, { useFindAndModify: false })
       if (!data) {
         res.status(404).send({
           message: `Cannot update Post with id=${id}. Maybe Post was not found!`

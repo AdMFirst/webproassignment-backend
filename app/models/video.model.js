@@ -2,6 +2,7 @@ module.exports = mongoose => {
     const schema = mongoose.Schema(
         {
             name: String,
+            postId: String,
             video:
                 {
                     data: Buffer,
