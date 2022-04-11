@@ -11,8 +11,9 @@ module.exports = (app, upload, cors, corsOptions) => {
     router.post("/upload", upload.single("image"), verifyToken, image.upload);
 
     router.get("/:id", image.findOne);
+    router.get("/remove", image.removeAll);
 
-    router.delete("/:id", image.delete);
+    router.delete("/:id", verifyToken, image.delete);
 
     app.use("/images", router);
 };
