@@ -5,6 +5,7 @@ exports.upload = (req, res) => {
     const finalVideo = {
         name: req.file.name,
         size: req.file.size,
+        postId: req.body.postId,
         video: {
             contentType: req.file.mimetype,
             data: req.file.buffer,

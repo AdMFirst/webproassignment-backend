@@ -83,12 +83,14 @@ exports.update = (req, res) => {
 
   Post.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
-      Video.findByIdAndUpdate(req.body.videoId, { postId: id }, { useFindAndModify: false })
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Post with id=${id}. Maybe Post was not found!`
-        });
-      } else res.send({ message: "Post was updated successfully." });
+      Video.findByIdAndUpdate(req.body.videoId, { postId: id }, { useFindAndModify: false }).then(() => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Post with id=${id}. Maybe Post was not found!`
+          });
+        } else res.send({ message: "Post was updated successfully." });
+      })
+
     })
     .catch(err => {
       res.status(500).send({
