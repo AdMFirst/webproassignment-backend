@@ -24,7 +24,7 @@ exports.upload = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Video.find()
+    Video.find().select("-video")
         .then(data => {
             res.send(data);
         })
