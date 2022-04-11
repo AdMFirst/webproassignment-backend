@@ -12,7 +12,7 @@ module.exports = (app, upload, cors, corsOptions) => {
 
     router.get("/:id", image.findOne);
 
-    router.delete("/:id", verifyToken, image.delete);
+    router.delete("/:id", image.delete);
 
     app.use("/images", router);
 };
