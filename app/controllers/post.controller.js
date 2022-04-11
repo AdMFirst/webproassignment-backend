@@ -1,6 +1,6 @@
 const db = require("../models");
 const Post = db.posts;
-const axios = require('axios')
+const Image = db.images;
 
 // Create and Save a new Post
 exports.create = (req, res) => {
@@ -87,7 +87,10 @@ exports.update = (req, res) => {
         res.status(404).send({
           message: `Cannot update Post with id=${id}. Maybe Post was not found!`
         });
-      } else res.send({ message: "Post was updated successfully." });
+      } else {
+        Post.findByIdAndUpdate(req.body.imageId, { postId: id }, { useFindAndModify: false })
+        res.send({message: "Post was updated successfully."});
+      }
     })
     .catch(err => {
       res.status(500).send({
