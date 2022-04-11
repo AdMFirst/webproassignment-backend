@@ -6,7 +6,7 @@ module.exports = (app, upload, cors, corsOptions) => {
     let router = require("express").Router();
     router.all('*', cors(corsOptions));
 
-    router.get("/", verifyToken, video.findAll);
+    router.get("/", video.findAll);
 
     router.post("/upload", upload.single("video"), verifyToken, video.upload);
 
