@@ -88,7 +88,7 @@ exports.update = (req, res) => {
           message: `Cannot update Post with id=${id}. Maybe Post was not found!`
         });
       } else {
-        Post.findByIdAndUpdate(req.body.imageId, { postId: id }, { useFindAndModify: false })
+        Image.findByIdAndUpdate(req.body.imageId, { postId: id }, { useFindAndModify: false })
         res.send({message: "Post was updated successfully."});
       }
     })
