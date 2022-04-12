@@ -18,7 +18,6 @@ module.exports = mongoose => {
             published: Boolean,
             imageId: {
                 type: String,
-                required: [true, "ImageId not provided"],
             },
             videoId: {
                 type: String,
