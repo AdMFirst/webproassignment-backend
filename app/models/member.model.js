@@ -30,7 +30,6 @@ module.exports = mongoose => {
             published: Boolean,
             imageId: {
                 type: String,
-                required: [true, "ImageId not provided"],
             },
             created: {
                 type: Date,
