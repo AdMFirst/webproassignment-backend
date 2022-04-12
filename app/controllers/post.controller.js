@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     userId: req.user.id
   });
 
-  // Save Post in the database
+  // Save Post
   post
     .save(post)
     .then(data => {
