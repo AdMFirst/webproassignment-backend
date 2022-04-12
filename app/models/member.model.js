@@ -12,6 +12,12 @@ module.exports = mongoose => {
             description: {
                 type: String,
             },
+            facebookUrl: {
+                type: String,
+            },
+            instagramUrl: {
+                type: String,
+            },
             en: {
                 fullName: {
                     type: String,

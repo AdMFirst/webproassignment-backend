@@ -14,6 +14,8 @@ exports.create = (req, res) => {
         fullName: req.body.fullName,
         position: req.body.position,
         description: req.body.description,
+        facebookUrl: req.body.facebookUrl,
+        instagramUrl: req.body.instagramUrl,
         en: {
             fullName: req.body.en.fullName,
             position: req.body.en.position,
