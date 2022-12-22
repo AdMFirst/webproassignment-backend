@@ -1,8 +1,8 @@
-const db = require("../models");
+const db = require("./schema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = db.users;
-const { ROLE_USER } = require("../config/app.config");
+const ROLE_USER = 'ROLE_USER';
 
 exports.login = (req, res) => {
     try {

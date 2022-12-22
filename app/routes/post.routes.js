@@ -1,7 +1,7 @@
 const verifyToken = require('../middlewares/authJWT');
 
 module.exports = (app, cors, corsOptions) => {
-  const post = require("../controllers/post.controller.js");
+  const post = require("../models/post.models.js");
 
   const router = require("express").Router();
   router.all('*', cors(corsOptions));

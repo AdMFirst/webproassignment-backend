@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("./schema");
 const Member = db.members;
 
 // Create and Save a new Member
