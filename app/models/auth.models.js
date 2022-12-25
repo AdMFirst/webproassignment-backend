@@ -1,6 +1,6 @@
 const db = require("./schema");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const User = db.users;
 const ROLE_USER = 'ROLE_USER';
 
