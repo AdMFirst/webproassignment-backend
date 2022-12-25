@@ -6,7 +6,7 @@ const ROLE_USER = 'ROLE_USER';
 
 exports.login = (req, res) => {
   try {
-    console.log(req.body);
+    //console.log(req.body);
     User.findOne({
       email: req.body.email,
     })
@@ -69,7 +69,7 @@ exports.login = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const user = new User({
     fullName: req.body.fullName,
     email: req.body.email,
@@ -101,6 +101,10 @@ exports.getUser = (req, res) => {
 };
 */
 
+exports.jwtValid = (req, res) => {
+    return res.status(200).send({success: true});
+}
+
 exports.deleteUser = (req, res) => {
   User.findByIdAndDelete(req.user.id, (err, user) => {
     if (err) {
@@ -110,7 +114,7 @@ exports.deleteUser = (req, res) => {
             success: false,
           });
     }
-    console.log(`User deleted: ${user}`);
+    //console.log(`User deleted: ${user}`);
     return res.status(200).send({
       success: true,
       message: `User with id ${user.id} successfuly deleted`,
