@@ -57,7 +57,6 @@ exports.login = (req, res) => {
                         },
                         message: "Login successfull",
                         accessToken: token,
-                        success: true,
                     });
             });
     } catch (e) {
