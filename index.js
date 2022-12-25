@@ -33,7 +33,9 @@ const db = require("./app/models/schema");
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
     })
     .then(() => {
         console.log("Connected to the database!");
