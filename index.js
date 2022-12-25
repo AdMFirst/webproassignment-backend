@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require("express");
 const cors = require('cors');
 const compression = require("compression");
+const helmet = require("helmet");
 
 const whitelist = ['https://swift-react-js.vercel.app/', 'http://localhost:3000']
 const corsOptions = {
@@ -19,6 +20,7 @@ const corsOptions = {
 
 const app = express();
 app.use(compression);
+app.use(helmet);
 
 // parse requests of content-type - application/json
 app.use(express.json({extended: false}));  /* bodyParser.json() is deprecated */
