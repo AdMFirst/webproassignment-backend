@@ -1,5 +1,6 @@
 module.exports = mongoose => {
-    const { ROLE_ADMIN, ROLE_USER } = require("../config/app.config");
+    const ROLE_ADMIN = 'ROLE_ADMIN'
+    const ROLE_USER = 'ROLE_USER'
 
     const schema = mongoose.Schema(
         {

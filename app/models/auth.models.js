@@ -1,11 +1,12 @@
-const db = require("../models");
+const db = require("./schema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = db.users;
-const { ROLE_USER } = require("../config/app.config");
+const ROLE_USER = 'ROLE_USER';
 
 exports.login = (req, res) => {
     try {
+        console.log(req.body)
         User.findOne({
             email: req.body.email
         })
@@ -13,13 +14,15 @@ exports.login = (req, res) => {
                 if (err) {
                     return res.status(500)
                         .send({
-                            message: err
+                            message: err,
+                            success: false,
                         });
                 }
                 if (!user) {
                     return res.status(404)
                         .send({
-                            message: "User Not found."
+                            message: "User Not found.",
+                            success: false,
                         });
                 }
 
@@ -33,7 +36,8 @@ exports.login = (req, res) => {
                     return res.status(401)
                         .send({
                             accessToken: null,
-                            message: "Invalid Password!"
+                            message: "Invalid Password!",
+                            success: false,
                         });
                 }
                 //signing token with user id
@@ -53,6 +57,7 @@ exports.login = (req, res) => {
                         },
                         message: "Login successfull",
                         accessToken: token,
+                        success: true,
                     });
             });
     } catch (e) {
@@ -65,6 +70,7 @@ exports.login = (req, res) => {
 };
 
 exports.register = (req, res) => {
+    console.log(req.body)
     const user = new User({
         fullName: req.body.fullName,
         email: req.body.email,
@@ -76,18 +82,40 @@ exports.register = (req, res) => {
         if (err) {
             return res.status(400)
                 .send({
-                    message: err
+                    message: err,
+                    success: false,
                 });
         } else {
             return res.status(200)
                 .send({
-                    message: "User Registered successfully"
+                    message: "User Registered successfully",
+                    success: true,
                 })
         }
     });
 };
 
+/*
 exports.getUser = (req, res) => {
     return res.status(200)
         .send(req.user)
 };
+*/
+
+exports.deleteUser = (req, res) => {
+    User.findByIdAndDelete(req.user.id, (err, user) => {
+        if (err) {
+            return res.status(400)
+                .send({
+                    message: err,
+                    success: false,
+                });
+        }
+        console.log(`User deleted: ${user}`);
+        return res.status(200).send({
+            success: true, 
+            message: `User with id ${user.id} successfuly deleted`
+        })
+      });
+}
+

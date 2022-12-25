@@ -1,10 +1,9 @@
 require('dotenv').config()
 
 const express = require("express");
-const multer = require("multer");
-const cors = require('cors')
+const cors = require('cors');
 
-const whitelist = ['https://www.eurocarpathian.com', 'http://localhost:3000']
+const whitelist = ['https://swift-react-js.vercel.app/', 'http://localhost:3000']
 const corsOptions = {
     origin: function (origin, callback) {
         console.log(origin)
@@ -26,10 +25,10 @@ app.use(express.json({extended: false}));  /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));   /* bodyParser.urlencoded() is deprecated */
 
-const storage = multer.memoryStorage()
-const upload = multer({storage: storage})
+// removed multer cause some vulnerability
 
-const db = require("./app/models");
+
+const db = require("./app/models/schema");
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -44,16 +43,13 @@ db.mongoose
     });
 
 app.get("/", (req, res) => {
-    res.json({message: "Welcome to eurocarpathian API."});
+    res.json({message: "Welcome to Swift E-Learning API."});
 });
 
 
 require("./app/routes/auth.routes")(app, cors, corsOptions);
-require("./app/routes/post.routes")(app, cors, corsOptions);
-require("./app/routes/image.routes")(app, upload, cors, corsOptions);
-require("./app/routes/video.routes")(app, upload, cors, corsOptions);
-require("./app/routes/member.routes")(app, cors, corsOptions);
-require("./app/routes/translate.routes")(app, cors, corsOptions);
+require("./app/routes/protected.routes")(app, cors, corsOptions);
+
 
 app.use(cors(corsOptions));
 
