@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "cp -r src dist"
+    "build": "cp -r . dist"
   },
   "keywords": [
     "nodejs",
