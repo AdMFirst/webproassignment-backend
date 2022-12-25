@@ -48,8 +48,8 @@ app.get("/", (req, res) => {
 
 
 require("./app/routes/auth.routes")(app, cors, corsOptions);
-require("./app/routes/post.routes")(app, cors, corsOptions);
-require("./app/routes/member.routes")(app, cors, corsOptions);
+require("./app/routes/protected.routes")(app, cors, corsOptions);
+
 
 app.use(cors(corsOptions));
 

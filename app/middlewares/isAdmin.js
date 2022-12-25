@@ -1,4 +1,4 @@
-const { ROLE_ADMIN } = require("../config/app.config");
+const ROLE_ADMIN = 'ROLE_ADMIN';
 
 const isAdmin = (req, res, next) => {
     if (req.user.role === ROLE_ADMIN) {
