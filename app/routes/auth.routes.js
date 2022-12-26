@@ -13,5 +13,7 @@ module.exports = (app, cors, corsOptions) => {
 
   router.post('/verify', verifyToken, auth.jwtValid);
 
+  router.post('/updateregistration', verifyToken, auth.updateRegistration);
+
   app.use('/auth', router);
 };
