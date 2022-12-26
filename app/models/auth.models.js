@@ -95,7 +95,6 @@ exports.updateRegistration = (req, res) => {
     fullName: req.body.fullName,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
-    profilePicture: req.body.profilePicture,
     jurusan: req.body.jurusan,
     sekolahAsal: req.body.sekolahAsal
   }
