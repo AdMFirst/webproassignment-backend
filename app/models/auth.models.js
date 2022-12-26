@@ -106,7 +106,7 @@ exports.updateRegistration = (req, res) => {
         success: false
       })
     }
-
+    user.password = undefined;
     return res.status(200).send({
       success: true,
       user: user
