@@ -48,12 +48,9 @@ exports.login = (req, res) => {
       )
 
       // responding to client request with user profile success message and  access token .
+      user.password = undefined
       return res.status(200).send({
-        user: {
-          id: user._id,
-          email: user.email,
-          fullName: user.fullName
-        },
+        user: user,
         message: 'Login successfull',
         accessToken: token
       })
