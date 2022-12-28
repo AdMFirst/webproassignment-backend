@@ -50,6 +50,7 @@ exports.login = (req, res) => {
       // responding to client request with user profile success message and  access token .
       user.password = undefined
       user.created = undefined
+      user.lastChanged = undefined
       user.id = undefined
       return res.status(200).send({
         user: user,
@@ -107,6 +108,9 @@ exports.updateRegistration = (req, res) => {
       })
     }
     user.password = undefined;
+    user.created = undefined
+    user.lastChanged = undefined
+    user.id = undefined
     return res.status(200).send({
       success: true,
       user: user
