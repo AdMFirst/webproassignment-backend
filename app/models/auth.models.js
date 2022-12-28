@@ -1,3 +1,5 @@
+const path = require('path');
+const Buffer = require('buffer')
 const db = require('./schema')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
@@ -52,7 +54,7 @@ exports.login = (req, res) => {
       user.created = undefined
       user.lastChanged = undefined
       return res.status(200).send({
-        user: user,
+        user: Buffer.from(JSON.stringify(user)).toString('base64'),
         message: 'Login successfull',
         accessToken: token
       })
@@ -111,7 +113,7 @@ exports.updateRegistration = (req, res) => {
     user.lastChanged = undefined
     return res.status(200).send({
       success: true,
-      user: user
+      user: Buffer.from(JSON.stringify(user)).toString('base64')
     })
   })
 }
@@ -139,6 +141,31 @@ exports.deleteUser = (req, res) => {
     return res.status(200).send({
       success: true,
       message: `User with id ${user.id} successfuly deleted`
+    })
+  })
+}
+
+exports.uploadProfilePicture = (req, res) => {
+  // Check the file extension
+  const fileExtension = path.extname(req.body.profilePicture);
+  if (fileExtension !== '.jpg' && fileExtension !== '.png' && fileExtension !== '.gif') {
+    return res.status(415).send({message: "Unsupported Media Type"});
+  }
+
+  // Make change in to
+  User.findByIdAndUpdate(req.user.id, {profilePicture: req.body.profilePicture}, (err, user) => {
+    if (err) {
+      return res.status(500).send({
+        message: err,
+        success: false
+      })
+    }
+    user.password = undefined;
+    user.created = undefined
+    user.lastChanged = undefined
+    return res.status(200).send({
+      success: true,
+      user: Buffer.from(JSON.stringify(user)).toString('base64')
     })
   })
 }

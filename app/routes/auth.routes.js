@@ -15,5 +15,7 @@ module.exports = (app, cors, corsOptions) => {
 
   router.post('/updateregistration', verifyToken, auth.updateRegistration);
 
+  router.post('/upload', verifyToken, auth.uploadProfilePicture )
+
   app.use('/auth', router);
 };
