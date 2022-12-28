@@ -1,4 +1,4 @@
-const path = require('path');
+
 const Buffer = require('buffer/').Buffer;
 const db = require('./schema')
 const jwt = require('jsonwebtoken')
@@ -146,12 +146,6 @@ exports.deleteUser = (req, res) => {
 }
 
 exports.uploadProfilePicture = (req, res) => {
-  // Check the file extension
-  const fileExtension = path.extname(req.body.profilePicture);
-  if (fileExtension !== '.jpg' && fileExtension !== '.png' && fileExtension !== '.gif') {
-    return res.status(415).send({message: "Unsupported Media Type"});
-  }
-
   // Make change in to
   User.findByIdAndUpdate(req.user.id, {profilePicture: req.body.profilePicture}, (err, user) => {
     if (err) {
