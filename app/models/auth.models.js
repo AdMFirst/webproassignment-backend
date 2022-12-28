@@ -51,7 +51,6 @@ exports.login = (req, res) => {
       user.password = undefined
       user.created = undefined
       user.lastChanged = undefined
-      user.id = undefined
       return res.status(200).send({
         user: user,
         message: 'Login successfull',
@@ -110,7 +109,6 @@ exports.updateRegistration = (req, res) => {
     user.password = undefined;
     user.created = undefined
     user.lastChanged = undefined
-    user.id = undefined
     return res.status(200).send({
       success: true,
       user: user
