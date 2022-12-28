@@ -35,6 +35,10 @@ module.exports = (mongoose) => {
           type: Date,
           default: Date.now,
         },
+        lastChanged: {
+          type: Date,
+          default: Date.now
+        },
         phoneNumber: {
           type: String,
           required: false

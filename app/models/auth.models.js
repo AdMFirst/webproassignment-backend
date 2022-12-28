@@ -49,7 +49,6 @@ exports.login = (req, res) => {
 
       // responding to client request with user profile success message and  access token .
       user.password = undefined
-      user.role = undefined
       user.created = undefined
       user.id = undefined
       return res.status(200).send({
@@ -96,7 +95,8 @@ exports.updateRegistration = (req, res) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     jurusan: req.body.jurusan,
-    sekolahAsal: req.body.sekolahAsal
+    sekolahAsal: req.body.sekolahAsal,
+    lastChanged: Date.now(),
   }
 
   User.findByIdAndUpdate(req.user.id, updateTo, (err, user) => {
