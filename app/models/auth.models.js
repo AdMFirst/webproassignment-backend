@@ -1,5 +1,5 @@
 const path = require('path');
-const Buffer = require('buffer')
+const Buffer = require('buffer/').Buffer;
 const db = require('./schema')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
