@@ -11,7 +11,8 @@ module.exports = (app, cors, corsOptions) => {
   router.post('/tambah', verifyToken, contoh.tambah);
   router.get('/ambil', contoh.ambil);
   router.delete('/hapus', verifyToken, isAdmin, contoh.hapus)
-  
+  router.put('/ubah', verifyToken, isAdmin, contoh.ubah)
+  router.patch('/addlike', verifyToken, contoh.like)
 
   app.use('/contoh', router);
 };

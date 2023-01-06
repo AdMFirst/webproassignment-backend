@@ -66,8 +66,34 @@ exports.hapus = (req, res) => {
 };
 
 exports.ubah = (req, res) => {
-  //make a function that update Contoh
-  // update lastChanged to current time
+  const { id } = req.params;
+  const updates = req.body;
+
+  updates.lastChanged = Date.now();
+
+  //console.log(updates)
+  Contoh.findByIdAndUpdate(id, updates, (err, result) => {
+    if (err) {
+      return res.status(400).send({
+        message: err
+      })
+    } else {
+      return res.status(200).send({message: "ok", data: result});
+    }
+  })
 }
+
+exports.like = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const contoh = await Contoh.findById(id);
+    contoh.likes++;
+    await contoh.save();
+    res.send(contoh);
+    
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
 
 
