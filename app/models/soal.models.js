@@ -1,5 +1,6 @@
 const db = require('./schema')
 const Soal = db.soal
+const historyTugas = db.historyTugas
 
 //create, read, update, delete
 exports.tambah = (req, res) => {
@@ -64,7 +65,11 @@ exports.hapus = (req, res) => {
 }
 
 exports.getA = (req, res) => {
-    console.log(req)
+    const data = new historyTugas({
+        userId: req.user.id,
+        soalId: req.params.id
+    })
+    data.save()
     Soal.findById(req.params.id, (err, data) => {
         if (err) {
             return res.status(400).send({
