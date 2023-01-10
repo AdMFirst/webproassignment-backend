@@ -7,6 +7,7 @@ exports.tambah = (req, res) => {
         owner: req.user.id,
         content: req.body.content
     })
+
     data.save((err, user) => {
         if (err){
             return res.status(400).send({
@@ -14,7 +15,8 @@ exports.tambah = (req, res) => {
             })
         } else {
             return res.status(200).send({
-                message: 'added'
+                message: 'added',
+                id: user.id
             })
         }
     })
@@ -56,6 +58,21 @@ exports.hapus = (req, res) => {
         } else {
             return res.status(200).send({
                 message: 'delete'
+            });
+        }
+    });
+}
+
+exports.getA = (req, res) => {
+    console.log(req)
+    Soal.findById(req.params.id, (err, data) => {
+        if (err) {
+            return res.status(400).send({
+                message: err
+            });
+        } else {
+            return res.status(200).send({
+                data: data
             });
         }
     });

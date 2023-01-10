@@ -5,8 +5,8 @@ module.exports = (mongoose) => {
     const schema = mongoose.Schema(
         {
           content:{
-            type: String,
-            required:[true]
+            type: [String],
+            required:true
           },
           owner:{
             type: Schema.Types.ObjectId,

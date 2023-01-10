@@ -7,10 +7,10 @@ module.exports = (app, cors, corsOptions) => {
   const router = require('express').Router();
   router.all('*', cors(corsOptions));
 
-  // router.post("/register", verifyToken, isAdmin, auth.register);
-  router.post('/tambah', verifyToken, soal.tambah);
+  router.post('/tambah', verifyToken, isAdmin, soal.tambah);
   router.get('/dapat', verifyToken, soal.dapat);
   router.delete('/hapus', verifyToken, isAdmin, soal.hapus)
+  router.get('/dapat1/:id', verifyToken, soal.getA)
   
   app.use('/soal', router);
 };
