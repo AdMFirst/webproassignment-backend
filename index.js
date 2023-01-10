@@ -36,6 +36,7 @@ const db = require('./app/models/schema');
 require('./app/routes/auth.routes')(app, cors, corsOptions);
 require('./app/routes/protected.routes')(app, cors, corsOptions);
 require('./app/routes/soal.routes')(app, cors, corsOptions);
+require('./app/routes/historyTugas.routes')(app, cors, corsOptions);
 
 app.use(cors(corsOptions));
 
