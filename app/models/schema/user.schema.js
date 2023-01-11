@@ -56,7 +56,8 @@ module.exports = (mongoose) => {
           type: String,
           required: false
         }
-      },
+        
+      }
   );
 
   schema.method('toJSON', function() {
