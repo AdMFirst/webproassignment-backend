@@ -3,11 +3,11 @@ const materi = db.materi
 
 exports.exploreVideo = (req, res) => {
   const { jenisMapel } = req.body;
-  materi.find({ jenisMapel }, 'id judulMateri', (error, materis) => {
+  materi.find({ jenisMapel }, 'id judulMateri', (error, materi) => {
       if (error) {
         return res.status(500).send(error);
       }
-      return res.send(materis);
+      return res.send(materi);
   });
 };
   
@@ -37,7 +37,8 @@ exports.readVideo = (req, res) => {
   
 exports.updateVideo = (req, res) => {
   const updates = req.body;
-  materi.findByIdAndUpdate(id, updates, { new: true }, (error, materi) => {
+  const { id } = req.params;
+  materi.findByIdAndUpdate(id, updates, (error, materi) => {
     if (error) {
       return res.status(500).send(error);
     }
