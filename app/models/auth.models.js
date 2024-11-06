@@ -65,7 +65,7 @@ exports.register = (req, res) => {
     fullName: req.body.fullName,
     email: req.body.email,
     role: ROLE_USER,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 12)
   })
 
   user.save((err, user) => {
