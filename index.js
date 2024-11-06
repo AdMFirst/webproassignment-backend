@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
+const helmet = require('helmet'); // ummm what is helmet???
 
 const whitelist = ['https://swift-react-js.vercel.app', 'http://localhost:3000'];
 const corsOptions = {
