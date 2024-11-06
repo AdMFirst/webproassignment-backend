@@ -30,14 +30,6 @@ exports.login = (req, res) => {
         req.body.password,
         user.password
       )
-      // checking if password was valid and send response accordingly
-      if (!passwordIsValid) {
-        return res.status(401).send({
-          accessToken: null,
-          message: 'Invalid Password!',
-          success: false
-        })
-      }
       // signing token with user id
       const token = jwt.sign(
         {
