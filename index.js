@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet'); // ummm what is helmet??
 
-const whitelist = ['https://swift-react-js.vercel.app', 'http://localhost:3000'];
+const whitelist = [process.env.FRONT_END_URI];
 const corsOptions = {
   origin: function(origin, callback) {
     console.log(origin);
